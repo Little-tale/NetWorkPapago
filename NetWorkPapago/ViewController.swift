@@ -61,6 +61,7 @@ class ViewController: UIViewController {
     
 }
 
+
 extension ViewController {
     func designNavi() {
         self.navigationController?.navigationBar.titleTextAttributes = [
