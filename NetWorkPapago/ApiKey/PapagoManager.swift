@@ -1,15 +1,9 @@
-//
-//  PapagoManager.swift
-//  NetWorkPapago
-//
-//  Created by Jae hyung Kim on 1/17/24.
-//
-
 import UIKit
 import Alamofire
 
 
 /*
+ 
 {
     "message": {
         "@type": "response",
@@ -42,17 +36,17 @@ struct PaPagoLast: Decodable {
 
 enum PapagoLanguageOf: String, CaseIterable{
     case korean = "ko"
-    case english =  "en"
-    case japan =  "ja"
-    case china =  "zh-CN"
+    case english = "en"
+    case japan = "ja"
+    case china = "zh-CN"
     case Taiwan = "zh-TW"
-    case vietnam =  "vi"
-    case indonesia =  "id"
-    case thaipei =  "th"
-    case germen =  "de"
-    case rusia =  "ru"
-    case spain =  "es"
-    case italy =  "it"
+    case vietnam = "vi"
+    case indonesia = "id"
+    case thaipei = "th"
+    case germen = "de"
+    case rusia = "ru"
+    case spain = "es"
+    case italy = "it"
     case france = "fr"
 }
 
@@ -74,3 +68,7 @@ struct PapagoCanTrans {
         "fr":"프랑스어"
     ]
 }
+
+
+// 프로토콜 딜리게이트를 이용해 전뷰에 있는 내용을 끄집어 낼수 있다.
+// 참고 자료 : https://nlestory.tistory.com/170

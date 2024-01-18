@@ -11,6 +11,8 @@ import UIKit
 let papagoCan = PapagoCanTrans()
 
 class LanguageViewController: UIViewController {
+    
+    
     @IBOutlet var backGroundView: UIView!
     @IBOutlet var tableView: UITableView!
     
@@ -63,10 +65,16 @@ extension LanguageViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.textLabel?.text = papagoCan.can[item]
         
-
         
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        // dismiss(animated: true)
+    }
     
+}
+
+extension LanguageViewController {
     
 }

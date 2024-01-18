@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
     @IBOutlet var headerView: UIView!
@@ -14,11 +15,10 @@ class ViewController: UIViewController {
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
     @IBOutlet var searchTextView: UITextView!
+    @IBOutlet var testButton: UIButton!
+    @IBOutlet var testLabel: UILabel!
     
-    
-    
-    
-    
+
     var leftButtonText = "Korean"
     var rightButtonText = "English"
     
@@ -43,23 +43,81 @@ class ViewController: UIViewController {
        
         view.backgroundColor = .darkGray
         
+        testButton.addTarget(self, action: #selector(transltateButtonAct), for: .touchUpInside)
+        
     }
+    
+    @objc func transltateButtonAct() {
+        
+        let url = "https://openapi.naver.com/v1/papago/n2mt"
+        
+        let headers: HTTPHeaders = [
+            "X-Naver-Client-Id" : PapagoAPIKey.clientID,
+            "X-Naver-Client-Secret": PapagoAPIKey.clientSecret
+        ]
+        
+        let parameters: Parameters = [
+            "text": searchTextView.text!,
+            "source": "ko",
+            "target":"en"
+        ]
+        
+        
+        AF.request(url, method: .post, parameters: parameters, headers: headers).responseDecodable(of: PapaGo.self ) { 
+            
+            response in
+            
+            switch response.result {
+            case .success(let success):
+                print(success)
+                print(success.message.result.translatedText)
+                self.testLabel.text = success.message.result.translatedText
+                
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+        // 한국말 테스트
+        
+        
+        
+    }
+    
     
     
     @IBAction func leftButtonTap(_ sender: UIButton) {
-        let sb = UIStoryboard(name: "Language", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: "LanguageViewController") as! LanguageViewController
-        
-        let navc = UINavigationController(rootViewController: vc)
-        
-        self.present(navc, animated: true)
-
+        goLanguageView()
+    }
+    
+    @IBAction func rightButtonTapped(_ sender: UIButton) {
+        goLanguageView()
     }
     
     
-    
+    @IBAction func resultAct(_ sender: UIButton) {
+        
+        
+    }
     
 }
+
+extension ViewController{
+    func sendText(text: String) {
+        leftButtonText = text
+    }
+    
+    func goLanguageView() {
+        let sb = UIStoryboard(name: "Language", bundle: nil)
+        let vc = sb.instantiateViewController(identifier: "LanguageViewController") as! LanguageViewController
+        
+        
+        let navc = UINavigationController(rootViewController: vc)
+        self.present(navc, animated: true) {
+            print("언어설정 뷰로 이동했습니다.")
+        }
+    }
+}
+
 
 
 extension ViewController {
@@ -89,14 +147,7 @@ extension ViewController {
 
 extension ViewController {
     func designChageButton() {
-//        changeButton.setImage(UIImage(systemName: "fibrechannel"), for: .normal)
-//        changeButton.
-//        
-//        var configuar = UIButton.Configuration.plain()
-//        configuar.image = UIImage(systemName: "fibrechannel")
-//        
-//        configuar.contentInsets =  NSDirectionalEdgeInsets(top: 4, leading: 4, bottom: 4, trailing: 4)
-//
+        
         changeButton.setImage(UIImage(systemName: "fibrechannel"), for: .normal)
         // changeButton.configuration = configuar
         changeButton.layer.borderWidth = 0.6
@@ -132,9 +183,14 @@ extension ViewController {
 
 extension ViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textViewSet()
-        
+        if textView.text == ""{
+            searchTextView.text = "Type the text to translate"
+            searchTextView.textColor = .systemGray5
+        }else {
+            textViewSet()
+        }
     }
+
 }
 
 
@@ -146,5 +202,3 @@ extension ViewController {
         searchTextView.font = .systemFont(ofSize: 20)
     }
 }
-
-

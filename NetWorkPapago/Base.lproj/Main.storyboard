@@ -29,6 +29,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aoT-dI-mlB">
                                         <rect key="frame" x="250.66666666666663" y="9" width="30" height="30"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <connections>
+                                            <action selector="rightButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Oz-Bs-4ey"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zlc-QU-iQy">
                                         <rect key="frame" x="0.0" y="46" width="393" height="2"/>
@@ -70,15 +73,41 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NAy-AL-NDV">
+                                <rect key="frame" x="8" y="439.66666666666669" width="377" height="80.000000000000057"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="JCJ-Fl-CnZ"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="resultAct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Byy-OR-zu0"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6Q-i8-yKg">
+                                <rect key="frame" x="0.0" y="399.66666666666669" width="393" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3kx-dY-via"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="NAy-AL-NDV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="18G-vm-vfU"/>
+                            <constraint firstItem="c6Q-i8-yKg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="58q-oA-gnb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="c6Q-i8-yKg" secondAttribute="trailing" id="Nf0-2P-4I4"/>
+                            <constraint firstItem="NAy-AL-NDV" firstAttribute="top" secondItem="H4P-dy-9wl" secondAttribute="bottom" constant="8" id="PAv-eE-mYw"/>
                             <constraint firstItem="H4P-dy-9wl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RPP-7i-48v"/>
                             <constraint firstItem="zTW-Sd-OO2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YRO-5y-ahL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zTW-Sd-OO2" secondAttribute="trailing" id="bft-XX-xiW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NAy-AL-NDV" secondAttribute="trailing" constant="8" id="hQE-wO-QhM"/>
                             <constraint firstItem="zTW-Sd-OO2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="kY9-7j-dJS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="H4P-dy-9wl" secondAttribute="trailing" id="p1W-jn-43B"/>
+                            <constraint firstItem="NAy-AL-NDV" firstAttribute="top" secondItem="c6Q-i8-yKg" secondAttribute="bottom" id="pkq-kp-Xiz"/>
                             <constraint firstItem="H4P-dy-9wl" firstAttribute="top" secondItem="zTW-Sd-OO2" secondAttribute="bottom" id="uFY-7B-HFM"/>
                         </constraints>
                     </view>
@@ -90,6 +119,8 @@
                         <outlet property="leftButton" destination="wPM-Su-UUo" id="esv-nE-X4K"/>
                         <outlet property="rightButton" destination="aoT-dI-mlB" id="dPC-Sn-AT5"/>
                         <outlet property="searchTextView" destination="H4P-dy-9wl" id="JrC-zk-d44"/>
+                        <outlet property="testButton" destination="NAy-AL-NDV" id="PEm-ww-h0d"/>
+                        <outlet property="testLabel" destination="c6Q-i8-yKg" id="UhS-SY-NM4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
